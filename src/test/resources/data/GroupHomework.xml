@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<msg templateID="123" serviceID="60"
+     url="https://qun.qq.com/homework/features/detail.html?_wv=1027&amp;_bid=2146#web=1&amp;src=6&amp;hw_id=2009210752756581&amp;puin=2564631936&amp;hw_type=0&amp;need_feedback=1&amp;gid=1091407527&amp;group_code=1091407527&amp;group_id=1091407527&amp;open_web=1"
+     action="web" actionData="" a_actionData="" i_actionData="" brief="[分享]9月21日星期一数学作业" flag="3"
+     token="4f0a5e99dbdbbb72d8a4b7aff11fee05" timestamp="1600692298" nonce="1816977446">
+    <item layout="2">
+        <picture cover="http://p.qpic.cn/qqconadmin/0/8a0b8bcb4c938e2f014c940783ae0002/0"/>
+        <title>9月21日星期一数学作业</title>
+        <summary>何书元书，习题三，2, 3, 4, 5?</summary>
+    </item>
+    <source url="https://qun.qq.com/homework/?channel=1014&amp;_wv=1027&amp;src=2" icon="" name="班级作业" appid="101846357"
+            action="web" actionData="" a_actionData="" i_actionData="tencent101846357://"/>
+</msg>

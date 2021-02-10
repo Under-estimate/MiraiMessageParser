@@ -1,0 +1,31 @@
+{
+  "app": "com.tencent.map",
+  "desc": "地图",
+  "view": "LocationShare",
+  "ver": "0.0.0.1",
+  "prompt": "[应用]地图",
+  "from": 1,
+  "appID": "",
+  "sourceName": "",
+  "actionData": "",
+  "actionData_A": "",
+  "sourceUrl": "",
+  "meta": {
+    "Location.Search": {
+      "id": "",
+      "name": "位置分享",
+      "address": "湖北省武汉市珞珈山武汉大学",
+      "lat": "30.536855",
+      "lng": "114.367847",
+      "from": "plusPanel"
+    }
+  },
+  "config": {
+    "forward": 1,
+    "autosize": 1,
+    "type": "card"
+  },
+  "text": "",
+  "sourceAd": "",
+  "extra": ""
+}

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="140" templateID="1" action="web" brief="[视频]张一山唱这首歌唱了十年..." sourceMsgId="0"
+     url="http://mobile.qzone.qq.com/l?g=279&amp;_wv=1&amp;i=9e79241df3181d5f48fe0a00&amp;u=488929694&amp;a=311&amp;sg=84&amp;sharetag=37F70D036561EFCD502EC75EE1E44AEC&amp;jumptoqzone=1&amp;g_f=2000000393"
+     flag="0" adverSign="0" createTime="2020-08-28" multiMsgFlag="0"
+     qzFloatExtra='{"uin":488929694,"nickname":"大家一起跳舞","ugcKey":"488929694_311_9e79241df3181d5f48fe0a00_","isTXVideo":1,"videoUrl":"http:\/\/qzvv.video.qq.com\/qzone\/qzgeturl_f3122kq10z3?platform=30301&amp;sdtfrom=v5145&amp;vid=f3122kq10z3&amp;nettype=1&amp;appVer=8.4.5.1468&amp;encryptVer=6.5&amp;qua=v1_and_sq_8.4.5_1468_yyb_d&amp;uin=1736822114&amp;yearflag=0&amp;sceneConf.secondScene=12&amp;width=1080&amp;height=2296&amp;owner=488929694&amp;playerformat=shd&amp;sphttps=0&amp;cKey=c0ddEaox3moC-Vjwrx9PFeBUFtk5UDQW56nCI7OmAKrgsFyodzKKpO4jmmRw7WewjYI-vtZzKPLBJjgnBdEM9ahZFTNp7CjqIyDcApsm8uFzbtxU","videoID":"f3122kq10z3","enterVideoLayer":1,"appid":311}'>
+    <item layout="5" advertiser_id="0" aid="0">
+        <video cover="http://puui.qpic.cn/qqvideo/0/f3122kq10z3/0?w5=1280&amp;h5=960" vInfo="f3122kq10z3"
+               tInfo="f3122kq10z3" preStartPosi="0" preTime="19" preWidth="1280" preHeight="960" fullTime="19"
+               busiType="3" isJump2Web="0" advertiser_id="0" aid="0"/>
+        <title>张一山唱这首歌唱了十年,走哪唱...</title>
+    </item>
+    <source name="QQ空间" icon="https://i.gtimg.cn/open/app_icon/03/58/48/36/1103584836_100_m.png" action="web"
+            appid="1103584836"/>
+</msg>

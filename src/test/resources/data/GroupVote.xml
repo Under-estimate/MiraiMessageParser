@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="23" templateID="1" action="web" actionData="" a_actionData="" i_actionData="" brief="[发起投票]"
+     url="http://client.qun.qq.com/qqweb/m/qun/vote/detail.html?_wv=1031&amp;_bid=2035&amp;src=400&amp;groupuin=1151549376&amp;fid=c03fa34400000000a74a4a5f17e40400&amp;src=1"
+     flag="1" feedid="c03fa34400000000a74a4a5f17e40400">
+    <item layout="2">
+        <vote cover="http://gdynamic.qpic.cn/gdynamic/YT97ZP652wSQz7JYibAl0F9yy7VfWCRPXibQRhpzicwhKw/220"/>
+        <title>请有意向来听的同学投个票以及选择时间段～</title>
+        <checklist min="1" max="1">
+            <r>有意向来听</r>
+            <r>14：00-15：00</r>
+            <r>15：30-16：30</r>
+            <r></r>
+        </checklist>
+    </item>
+    <pc_itemdata type="3">
+        <actionlist>
+            <action type="2" id="1">
+                <target>9EE2FB5B-A7F2-43E2-89BD-55F58F962F28</target>
+                <appid>100712945</appid>
+                <param>http://ptlogin2.qq.com/qqweb_groupapps_load?ptlang=2052&amp;clientuin=[clientuin]&amp;clientkey=[clientkey]&amp;gcode=短群号]&amp;clientver=[版本号]&amp;appid=100712945&amp;pvsrc=100&amp;fid=[feeds
+                    id]
+                </param>
+                <attachParam>fid=c03fa34400000000a74a4a5f17e40400</attachParam>
+                <text></text>
+                <anchor>TOPLEFT</anchor>
+            </action>
+        </actionlist>
+    </pc_itemdata>
+    <source name="群投票" icon="" url="" action="app" actionData="" i_actionData="tencent2659398616://"
+            appid="2659398616"/>
+</msg>

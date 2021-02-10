@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="5" templateID="12345" action="" brief="0qx姐姐的照片" sourceMsgId="0" url="" flag="0" adverSign="0"
+     multiMsgFlag="0">
+    <item layout="0">
+        <image uuid="B8549F7AA6064A7B1321EC3B40B6138F.jpg" md5="B8549F7AA6064A7B1321EC3B40B6138F" GroupFiledid="0"
+               filesize="81322" local_path="B8549F7AA6064A7B1321EC3B40B6138F.jpg" minWidth="200" minHeight="200"
+               maxWidth="500" maxHeight="1000"/>
+    </item>
+    <source name="樱?(id:73388316 author:JYT)" icon="" action="" appid="-1"/>
+</msg>

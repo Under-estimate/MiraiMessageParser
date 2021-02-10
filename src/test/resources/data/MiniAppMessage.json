@@ -1,0 +1,43 @@
+{
+  "app": "com.tencent.miniapp_01",
+  "config": {
+    "autoSize": 0,
+    "ctime": 1612711822,
+    "forward": 1,
+    "height": 0,
+    "token": "05902ab8fe366f838436f5ecbc294392",
+    "type": "normal",
+    "width": 0
+  },
+  "desc": "哔哩哔哩",
+  "extra": {
+    "app_type": 1,
+    "appid": 100951776,
+    "uin": 2736362437
+  },
+  "meta": {
+    "detail_1": {
+      "appid": "1109937557",
+      "desc": "【白火】苦力怕恋爱物语：怪物公寓Ⅱ",
+      "gamePoints": "",
+      "gamePointsUrl": "",
+      "host": {
+        "nick": "あかつき丶蝶",
+        "uin": 2736362437
+      },
+      "icon": "http://i.gtimg.cn/open/app_icon/00/95/17/76//100951776_100_m.png?t=1612698184",
+      "preview": "pubminishare-30161.picsz.qpic.cn/10c85d6d-246d-4820-99c7-69936a0b68a5",
+      "qqdocurl": "https://b23.tv/ocHzQU?share_medium=android&share_source=qq&bbid=XY63EC96DBB6C23D534CE37BA15E47B7598BC&ts=1612711812299",
+      "scene": 1036,
+      "shareTemplateData": {},
+      "shareTemplateId": "8C8E89B49BE609866298ADDFF2DBABA4",
+      "showLittleTail": "",
+      "title": "哔哩哔哩",
+      "url": "m.q.qq.com/a/s/3ef2a9cc8b068668aafb0115a82172b4"
+    }
+  },
+  "needShareCallBack": false,
+  "prompt": "[QQ小程序]哔哩哔哩",
+  "ver": "1.0.0.19",
+  "view": "view_8C8E89B49BE609866298ADDFF2DBABA4"
+}

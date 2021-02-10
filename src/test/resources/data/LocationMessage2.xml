@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="32" templateID="1" action="plugin"
+     actionData="mqqapi://app/action?pkg=com.tencent.mobileqq&amp;cmp=com.tencent.biz.PoiMapActivity&amp;type=sharedmap&amp;lat=30.536855&amp;lon=114.367847&amp;title=位置分享&amp;loc=湖北省武汉市珞珈山武汉大学行政楼东南(枫园路)&amp;dpid=null"
+     brief="[位置]" sourceMsgId="0" url="" flag="0" adverSign="0" multiMsgFlag="0">
+    <item layout="2">
+        <picture cover="https://pub.idqqimg.com/pc/misc/lbsshare_icon.jpg" w="0" h="0" needRoundView="0"/>
+        <title>位置分享</title>
+        <summary>湖北省武汉市珞珈山武汉大学</summary>
+    </item>
+    <source name="" icon="" action="" appid="-1"/>
+</msg>
