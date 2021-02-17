@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'org.zrnq'
-version '1.0.0'
+version '0.1.0'
 
 repositories {
     maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
@@ -14,9 +14,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.alibaba:fastjson:+'
-    implementation 'org.slf4j:slf4j-simple:+'
-    implementation 'org.reflections:reflections:+'
+    implementation 'com.alibaba:fastjson:1.2.75'
+    implementation 'org.slf4j:slf4j-simple:2.0.0-alpha1'
+    implementation 'org.reflections:reflections:0.9.12'
     testImplementation('org.junit.jupiter:junit-jupiter:5.5.2')
 }
 
