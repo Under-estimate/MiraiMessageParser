@@ -1,6 +1,5 @@
 package org.zrnq;
 
-import net.mamoe.mirai.message.data.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zrnq.data.RichMessageTemplate;
@@ -19,10 +18,11 @@ public class RichMessageParser {
     }
     /**
      * Parse the given rich message.
+     * @param message The content of rich message. May be JSON or XML.
      * @return Parsed rich message. You should check whether the parse has failed.
      * @see ParsedRichMessage#isParseFailed
      * */
-    public ParsedRichMessage parseRichMessage(RichMessage message){
+    public ParsedRichMessage parseRichMessage(String message){
         ParsedRichMessage result;
         try{
             result=RichMessageTypes.getRichMessageType(RichMessageTemplate.class).parseMessage(message);
@@ -30,12 +30,12 @@ public class RichMessageParser {
             Class<? extends RichMessageTemplate> knownType=findLastKnownType(e);
             String knownTypeName=knownType==null?"Unknown":RichMessageTypes.getRichMessageType(knownType).getTypeName();
             logger.warn(String.format(Utils.parseFail,knownTypeName));
-            writeLog(message.getContent(),knownType,e);
+            writeLog(message,knownType,e);
             return new ParsedRichMessage(knownType==null?RichMessageTemplate.class:knownType);
         }
         if(result.isParseFailed){
             logger.warn(String.format(Utils.unrecognizedMessage,result.getMessageTypeName()));
-            writeLog(message.getContent(),result.messageType,null);
+            writeLog(message,result.messageType,null);
         }
         return result;
     }

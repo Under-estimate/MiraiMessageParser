@@ -1,6 +1,5 @@
 package org.zrnq.data;
 
-import net.mamoe.mirai.message.data.RichMessage;
 import org.reflections.Reflections;
 import org.zrnq.ParsedRichMessage;
 import org.zrnq.RichMessageTypes;
@@ -22,12 +21,12 @@ public class RichMessageTemplate {
      * 2. If there exist child message types, then find a child message type that can handle this message
      * by comparing the feature value of this message with feature values that a child message type accepts.
      * Message types that have no child message type should overwrite this method to implement message parsing.
-     * @see RichMessageTemplate#getClassifyingFeatureValue(RichMessage)
+     * @see RichMessageTemplate#getClassifyingFeatureValue(String)
      * @param message The message that need to parse.
      * @return Parsed message.
      * */
     @SuppressWarnings("unchecked")
-    public ParsedRichMessage parseMessage(RichMessage message){
+    public ParsedRichMessage parseMessage(String message){
         RichMessageType typeAnnotation = this.getClass().getAnnotation(RichMessageType.class);
         if(typeAnnotation==null){
             throw new IllegalStateException("Child classes of RichMessageTemplate should be annotated with RichMessageType.");
@@ -51,13 +50,13 @@ public class RichMessageTemplate {
      * Get the classifying feature value of given message.
      * The feature value is used to find appropriate child message type to handle the message.
      * Message types that have child message types should overwrite this method to classify child message types.
-     * @see RichMessageTemplate#parseMessage(RichMessage)
+     * @see RichMessageTemplate#parseMessage(String)
      * @see RichMessageType#acceptedFeatureValues()
      * @param message The message that need to parse.
      * @return Extracted feature value.
      * */
-    public String getClassifyingFeatureValue(RichMessage message){
-        return message.getContent().substring(0,1);
+    public String getClassifyingFeatureValue(String message){
+        return message.substring(0,1);
     }
     /**
      * Get the full type name of given message type.

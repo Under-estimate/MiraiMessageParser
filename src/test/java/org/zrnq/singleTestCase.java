@@ -1,6 +1,5 @@
 package org.zrnq;
 
-import net.mamoe.mirai.message.data.RichMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zrnq.data.JsonMessage;
@@ -49,8 +48,7 @@ public class singleTestCase implements Runnable{
         }catch (Exception e){
             logger.error("Failed to read test resource.",e);
         }
-        RichMessage rm= sb::toString;
-        ParsedRichMessage prm=ParserTest.parser.parseRichMessage(rm);
+        ParsedRichMessage prm=ParserTest.parser.parseRichMessage(sb.toString());
         if(prm.isParseFailed)
             ParserTest.failed++;
         else

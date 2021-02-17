@@ -1,7 +1,5 @@
 package org.zrnq.annotation;
 
-import net.mamoe.mirai.message.data.RichMessage;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -24,7 +22,7 @@ public @interface RichMessageType {
     String fullName() default "unknown";
     /**
      * A value for distinguishing the child types of one rich message type.
-     * @see org.zrnq.data.RichMessageTemplate#getClassifyingFeatureValue(RichMessage)
+     * @see org.zrnq.data.RichMessageTemplate#getClassifyingFeatureValue(String)
      * */
     String[] acceptedFeatureValues() default "none";
 }

@@ -1,6 +1,5 @@
 package org.zrnq.data;
 
-import net.mamoe.mirai.message.data.RichMessage;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.zrnq.ParsedRichMessage;
@@ -13,8 +12,8 @@ import org.zrnq.annotation.RichMessageType;
 @RichMessageType(typeName = "Multiply", fullName = "RichMessage/XML/Multiply", acceptedFeatureValues = "35")
 public final class MultiplyMessage extends XmlMessage{
     @Override
-    public ParsedRichMessage parseMessage(RichMessage message) {
-        Element root=parseDocument(message.getContent());
+    public ParsedRichMessage parseMessage(String message) {
+        Element root=parseDocument(message);
         NodeList list=root.getElementsByTagName("title");
         StringBuilder sb=new StringBuilder();
         for(int i=0;i<list.getLength();i++)

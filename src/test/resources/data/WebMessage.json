@@ -1,0 +1,35 @@
+{
+  "app": "com.tencent.structmsg",
+  "config": {
+    "autosize": true,
+    "ctime": 1613399053,
+    "forward": true,
+    "token": "a06e1594862f20ed44028b3eeb7f06ae",
+    "type": "normal"
+  },
+  "desc": "新闻",
+  "extra": {
+    "app_type": 1,
+    "appid": 1103188687,
+    "msg_seq": 6929496165478557571,
+    "uin": 565678970
+  },
+  "meta": {
+    "news": {
+      "action": "",
+      "android_pkg_name": "",
+      "app_type": 1,
+      "appid": 1103188687,
+      "desc": "说出你的过年故事！",
+      "jumpUrl": "http://mp.weixin.qq.com/s?__biz=MzAwMzA2MDQwNQ==&mid=2653873966&idx=1&sn=8e8d07fada9adfeac03a1c14452776ae&chksm=811aa0f4b66d29e28698a84d6fdb24f709b9c6da8c3482c9cbafe82e2dc231c4c6558db677ca&mpshare=1&scene=23&srcid=021509lBsCjsxmmLYzRdi6mi&sharer_sharetime=1613399042368&sharer_shareid=c78db20ce7ec4ad38900b57e09e876d8#rd",
+      "preview": "https://mmbiz.qlogo.cn/sz_mmbiz_jpg/xQ5xgiaFIEtWn8HJJianrBiayUTw2dYDiaqxZDTgXvGD6jg1sfLuQbLcsCzxmnia3SsEb6PPxPZQtqhqdNvARNTN13g/300?wx_fmt=jpeg&wxfrom=7",
+      "source_icon": "",
+      "source_url": "",
+      "tag": "微信",
+      "title": "线上互动剧场演出预告 | 年的味"
+    }
+  },
+  "prompt": "[分享]线上互动剧场演出预告 | 年的味",
+  "ver": "0.0.0.1",
+  "view": "news"
+}

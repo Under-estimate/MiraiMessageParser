@@ -1,6 +1,5 @@
 package org.zrnq.data;
 
-import net.mamoe.mirai.message.data.RichMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -27,8 +26,8 @@ public class XmlMessage extends RichMessageTemplate{
         }
     }
     @Override
-    public String getClassifyingFeatureValue(RichMessage message) {
-        Element root=parseDocument(message.getContent());
+    public String getClassifyingFeatureValue(String message) {
+        Element root=parseDocument(message);
         return root.getAttribute("serviceID");
     }
     protected Element parseDocument(String xml){

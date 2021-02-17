@@ -95,6 +95,7 @@ public class ParsedRichMessage {
     @Override
     public String toString() {
         StringBuilder sb=new StringBuilder(getMessageTypeName());
+        sb.append("\r\n").append(text).append("\r\n");
         for(URL url:images){
             sb.append("[Image]").append(url.toString()).append("\r\n");
         }
