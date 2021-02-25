@@ -1,6 +1,7 @@
 package org.zrnq.data;
 
 import org.reflections.Reflections;
+import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
 import org.zrnq.RichMessageTypes;
 import org.zrnq.annotation.RichMessageType;

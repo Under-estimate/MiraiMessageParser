@@ -2,6 +2,7 @@ package org.zrnq;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.zrnq.annotation.CollectData;
 import org.zrnq.data.RichMessageTemplate;
 import java.io.File;
 import java.io.FileWriter;
@@ -34,12 +35,19 @@ public class RichMessageParser {
             return new ParsedRichMessage(knownType==null?RichMessageTemplate.class:knownType);
         }
         if(result.isParseFailed){
-            logger.warn(String.format(Utils.unrecognizedMessage,result.getMessageTypeName()));
-            writeLog(message,result.messageType,null);
+            logger.warn(String.format(Utils.unrecognizedMessage,result.getRichMessageTypeName()));
+            writeLog(message,result.messageType,"Unrecognized Message Type");
+        }
+        CollectData collectData = result.messageType.getAnnotation(CollectData.class);
+        if(collectData != null && collectData.enabled()){
+            writeLog(message,result.messageType,"Required by Annotation @CollectData");
         }
         return result;
     }
     private void writeLog(String messageContent, Class<? extends RichMessageTemplate> knownType, Throwable cause){
+        writeLog(messageContent, knownType, Utils.getStackTrace(cause));
+    }
+    private void writeLog(String messageContent, Class<? extends RichMessageTemplate> knownType, String cause){
         if(logDestination==null){
             logger.warn(Utils.NoLog);
             return;
@@ -58,7 +66,7 @@ public class RichMessageParser {
             logger.write(messageContent);
             if(cause!=null){
                 logger.write("\r\n[Cause :]\r\n");
-                logger.write(Utils.getStackTrace(cause));
+                logger.write(cause);
             }
             logger.write("\r\n--------------------------------------------------\r\n");
             logger.flush();

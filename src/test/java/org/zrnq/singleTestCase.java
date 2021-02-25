@@ -48,7 +48,7 @@ public class singleTestCase implements Runnable{
         }catch (Exception e){
             logger.error("Failed to read test resource.",e);
         }
-        ParsedRichMessage prm=ParserTest.parser.parseRichMessage(sb.toString());
+        ParsedRichMessage prm = ParserTest.parser.parseRichMessage(sb.toString());
         if(prm.isParseFailed)
             ParserTest.failed++;
         else

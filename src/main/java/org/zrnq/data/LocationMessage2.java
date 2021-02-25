@@ -1,6 +1,7 @@
 package org.zrnq.data;
 
 import org.w3c.dom.Element;
+import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
 import org.zrnq.annotation.RichMessageType;
 
