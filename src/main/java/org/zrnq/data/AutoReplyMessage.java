@@ -3,8 +3,8 @@ package org.zrnq.data;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
+import org.zrnq.annotation.CollectData;
 import org.zrnq.annotation.RichMessageType;
 
 /**
@@ -12,6 +12,7 @@ import org.zrnq.annotation.RichMessageType;
  * Click on one of the buttons will make the client automatically send corresponding message.
  * This is meant to be used in customer services.
  * */
+@CollectData
 @RichMessageType(typeName = "AutoReply", fullName = "RichMessage/JSON/AutoReply", acceptedFeatureValues = "com.tencent.autoreply")
 public final class AutoReplyMessage extends JsonMessage{
     @Override

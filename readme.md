@@ -31,11 +31,10 @@ dependencies {
 
 ### Message Structure
 
-The text field of each [ParsedMessage](https://github.com/Under-estimate/MiraiRichMessageParser/tree/main/src/main/java/org/zrnq/ParsedMessage.java) will begin with a description about the source of this message.
-
 #### Normal Message
 By parsing a normal message, you'll get an instance of [ParsedMessage](https://github.com/Under-estimate/MiraiRichMessageParser/tree/main/src/main/java/org/zrnq/ParsedMessage.java). In which these features will be extracted from normal messages:
 
+- Source Prompt (A short text describing the source of this message)
 - Images
 - Links (If the message contains a valid link)
 - Text

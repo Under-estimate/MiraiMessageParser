@@ -1,13 +1,17 @@
 package org.zrnq;
 
+import net.mamoe.mirai.contact.User;
 import net.mamoe.mirai.event.events.*;
 import net.mamoe.mirai.message.data.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MiraiMessageParser {
+    private static final Logger logger = LoggerFactory.getLogger(MiraiMessageParser.class);
 
     private static final String friendMessageTemplate = "[%s]:";
     private static final String groupMessageTemplate = "[%s>%s]:";
@@ -26,41 +30,21 @@ public class MiraiMessageParser {
     }
     public ParsedMessage parseMessage(MessageEvent event){
         StringBuilder sb = new StringBuilder();
-        if(event instanceof GroupMessageEvent){
-            sb.append(String.format(groupMessageTemplate,
-                    ((GroupMessageEvent) event).getGroup().getName(),
-                    event.getSenderName()));
-        }else if(event instanceof FriendMessageEvent){
-            sb.append(String.format(friendMessageTemplate,
-                    getSenderName(event)));
-        }else if(event instanceof GroupTempMessageEvent){
-            sb.append(String.format(groupTempMessageTemplate,
-                    ((GroupTempMessageEvent) event).getGroup().getName(),
-                    event.getSenderName()));
-        }else if(event instanceof StrangerMessageEvent){
-            sb.append(String.format(strangerMessageTemplate,
-                    event.getSenderName()));
-        }else if(event instanceof GroupMessageSyncEvent){
-            sb.append(String.format(messageSyncTemplate,
-                    ((GroupMessageSyncEvent) event).getGroup().getName()));
-        }else if(event instanceof FriendMessageSyncEvent){
-            sb.append(String.format(messageSyncTemplate,
-                    getSenderName(event)));
-        }else if(event instanceof GroupTempMessageSyncEvent){
-            sb.append(String.format(messageSyncTemplate,
-                    event.getSenderName()));
-        }else if(event instanceof StrangerMessageSyncEvent){
-            sb.append(String.format(messageSyncTemplate,
-                    event.getSenderName()));
-        }else{
-            sb.append(String.format(unknownTemplate,
-                    event.getSenderName()));
-        }
         ParsedMessage pm = new ParsedMessage();
+        pm.sourcePrompt = getSourcePrompt(event);
         for(SingleMessage single : event.getMessage()){
             if(single instanceof Image){
                 sb.append("[图片]");
                 pm.addImage(Image.queryUrl((Image)single));
+            }else if(single instanceof At){
+                if(event instanceof GroupMessageEvent){
+                    sb.append(((At)single).getDisplay(((GroupMessageEvent)event).getGroup()));
+                }else if(event instanceof GroupMessageSyncEvent){
+                    sb.append(((At)single).getDisplay(((GroupMessageSyncEvent)event).getGroup()));
+                }else{
+                    logger.warn("Invalid MessageEvent type : "+event.getClass().getName()+". MessageEvent contains At but isn't GroupMessageEvent or GroupMessageSyncEvent.");
+                    sb.append(single.contentToString());
+                }
             }else if(single instanceof FlashImage){
                 sb.append("[闪照]");
                 pm.addImage(Image.queryUrl(((FlashImage) single).getImage()));
@@ -97,10 +81,48 @@ public class MiraiMessageParser {
             pm.addLink(matcher.group(),matcher.group());
         return pm;
     }
-    private static String getSenderName(MessageEvent event){
-        if(event.getSender().getRemark().equalsIgnoreCase(""))
-            return event.getSender().getNick();
+    /**
+     * Get the best represented name of the event.
+     * */
+    public static String getUserName(User user){
+        if(user.getRemark().equalsIgnoreCase(""))
+            return user.getNick();
         else
-            return event.getSender().getRemark();
+            return user.getRemark();
+    }
+    /**
+     * Get the prompt describing the source of this message event.
+     * */
+    public static String getSourcePrompt(MessageEvent event){
+        if(event instanceof GroupMessageEvent){
+            return String.format(groupMessageTemplate,
+                    ((GroupMessageEvent) event).getGroup().getName(),
+                    event.getSenderName());
+        }else if(event instanceof FriendMessageEvent){
+            return String.format(friendMessageTemplate,
+                    getUserName(event.getSender()));
+        }else if(event instanceof GroupTempMessageEvent){
+            return String.format(groupTempMessageTemplate,
+                    ((GroupTempMessageEvent) event).getGroup().getName(),
+                    event.getSenderName());
+        }else if(event instanceof StrangerMessageEvent){
+            return String.format(strangerMessageTemplate,
+                    event.getSenderName());
+        }else if(event instanceof GroupMessageSyncEvent){
+            return String.format(messageSyncTemplate,
+                    ((GroupMessageSyncEvent) event).getGroup().getName());
+        }else if(event instanceof FriendMessageSyncEvent){
+            return String.format(messageSyncTemplate,
+                    getUserName(event.getSender()));
+        }else if(event instanceof GroupTempMessageSyncEvent){
+            return String.format(messageSyncTemplate,
+                    event.getSenderName());
+        }else if(event instanceof StrangerMessageSyncEvent){
+            return String.format(messageSyncTemplate,
+                    event.getSenderName());
+        }else{
+            return (String.format(unknownTemplate,
+                    event.getSenderName()));
+        }
     }
 }

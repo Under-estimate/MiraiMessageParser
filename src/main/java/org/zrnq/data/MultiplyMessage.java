@@ -2,14 +2,15 @@ package org.zrnq.data;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
+import org.zrnq.annotation.CollectData;
 import org.zrnq.annotation.RichMessageType;
 
 /**
  * Multiple messages that are forwarded together.
  * The text will only display the first few messages.
  * */
+@CollectData
 @RichMessageType(typeName = "Multiply", fullName = "RichMessage/XML/Multiply", acceptedFeatureValues = "35")
 public final class MultiplyMessage extends XmlMessage{
     @Override

@@ -17,12 +17,16 @@ public class ParsedMessage {
      * Images may be fetched from normal messages that contains images or from rich messages.
      * */
     public final ArrayList<URL> images = new ArrayList<>(1);
+    private ArrayList<BufferedImage> cachedImages = null;
     /**
      * Links included in this message.
      * Links may be fetched from normal messages that contains links or from rich messages.
      * */
     public final ArrayList<Link> links = new ArrayList<>(1);
-
+    /**
+     * A prompt describing the source of this message event.
+     * */
+    public String sourcePrompt;
     /**
      * Text that represents this message.
      * */
@@ -39,7 +43,14 @@ public class ParsedMessage {
             throw new IllegalArgumentException("Invalid image url: "+url,e);
         }
     }
-    public ArrayList<BufferedImage> downloadImages(){
+    /**
+     * Download all images contained in this message.
+     *
+     * @param cacheImages Whether to cache downloaded images inside this object for future call.
+     * */
+    public ArrayList<BufferedImage> downloadImages(boolean cacheImages){
+        if(cachedImages!=null)
+            return cachedImages;
         ArrayList<BufferedImage> data=new ArrayList<>();
         for(URL url:images){
             try{
@@ -50,6 +61,8 @@ public class ParsedMessage {
                 throw new IllegalArgumentException("Cannot download image from url:"+url);
             }
         }
+        if(cacheImages)
+            cachedImages = data;
         return data;
     }
     public void addLink(String url,String desc){

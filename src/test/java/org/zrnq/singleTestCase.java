@@ -54,7 +54,7 @@ public class singleTestCase implements Runnable{
         else
             ParserTest.passed++;
         //Test if image url is valid.
-        prm.downloadImages();
+        prm.downloadImages(false);
         Assertions.assertFalse(prm.isParseFailed);
         logger.info(prm.toString());
     }

@@ -3,14 +3,15 @@ package org.zrnq.data;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
+import org.zrnq.annotation.CollectData;
 import org.zrnq.annotation.RichMessageType;
 
 /**
  * A share message of QZone album.
  * May contain multiple images.
  * */
+@CollectData
 @RichMessageType(typeName = "QZoneAlbum", fullName = "RichMessage/JSON/QZoneAlbum", acceptedFeatureValues = "com.tencent.qzone.albumInvite")
 public final class QZoneAlbum extends JsonMessage{
     @Override

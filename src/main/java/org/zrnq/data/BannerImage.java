@@ -2,13 +2,14 @@ package org.zrnq.data;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
+import org.zrnq.annotation.CollectData;
 import org.zrnq.annotation.RichMessageType;
 
 /**
  * Rich message that contains one image, with text at the bottom of the image.
  * */
+@CollectData
 @RichMessageType(typeName = "BannerImage", fullName = "RichMessage/JSON/BannerImage", acceptedFeatureValues = "com.tencent.qqpay.qqmp.groupmsg")
 public final class BannerImage extends JsonMessage{
     @Override

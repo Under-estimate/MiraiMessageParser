@@ -1,13 +1,14 @@
 package org.zrnq.data;
 
 import org.w3c.dom.Element;
-import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
+import org.zrnq.annotation.CollectData;
 import org.zrnq.annotation.RichMessageType;
 
 /**
  * Rich message that contains an audio link.
  * */
+@CollectData
 @RichMessageType(typeName = "Audio", fullName = "RichMessage/XML/Audio", acceptedFeatureValues = "2")
 public final class AudioMessage extends XmlMessage{
     @Override

@@ -2,7 +2,6 @@ package org.zrnq.data;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
 import org.zrnq.annotation.RichMessageType;
 
