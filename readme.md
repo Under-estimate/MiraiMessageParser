@@ -1,7 +1,8 @@
 # MiraiMessageParser
 Providing uniform expression of (nearly) every type of messages.  
-This project is based on project [mamoe/mirai](https://github.com/mamoe/mirai)  
+This project is based on project [mamoe/mirai](https://github.com/mamoe/mirai)    
 
+[![Java CI with Gradle](https://github.com/Under-estimate/MiraiMessageParser/actions/workflows/gradle.yml/badge.svg)](https://github.com/Under-estimate/MiraiMessageParser/actions/workflows/gradle.yml)
 ## Content
 
 - [Usage](#usage)

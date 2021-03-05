@@ -50,16 +50,19 @@ public class MiraiMessageParser {
                 pm.addImage(Image.queryUrl(((FlashImage) single).getImage()));
             }else if(single instanceof Voice){
                 ParsedSoundMessage psm = new ParsedSoundMessage("[Voice]",((Voice) single).getUrl());
+                psm.sourcePrompt = pm.sourcePrompt;
                 psm.text = sb.toString()+"[Voice]";
                 return psm;
             }else if(single instanceof RichMessage){
                 ParsedRichMessage prm = richMessageParser.parseRichMessage(((RichMessage)single).getContent());
+                prm.sourcePrompt = pm.sourcePrompt;
                 prm.text = Utils.removeControlCharacters(sb.toString() + prm.text);
                 return prm;
             }else if(single instanceof MusicShare) {
                 //Parsing music share message [RichMessage/JSON/Struct/Music] is supported by mirai officially.
                 MusicShare ms = (MusicShare) single;
                 ParsedSoundMessage psm = new ParsedSoundMessage("[MusicShare]",ms.getMusicUrl());
+                psm.sourcePrompt = pm.sourcePrompt;
                 psm.text = sb.toString()+"[MusicShare]"+ms.getTitle();
                 psm.addImage(ms.getPictureUrl());
                 psm.addLink("Website", ms.getJumpUrl());
@@ -94,35 +97,37 @@ public class MiraiMessageParser {
      * Get the prompt describing the source of this message event.
      * */
     public static String getSourcePrompt(MessageEvent event){
+        String result;
         if(event instanceof GroupMessageEvent){
-            return String.format(groupMessageTemplate,
+            result = String.format(groupMessageTemplate,
                     ((GroupMessageEvent) event).getGroup().getName(),
                     event.getSenderName());
         }else if(event instanceof FriendMessageEvent){
-            return String.format(friendMessageTemplate,
+            result = String.format(friendMessageTemplate,
                     getUserName(event.getSender()));
         }else if(event instanceof GroupTempMessageEvent){
-            return String.format(groupTempMessageTemplate,
+            result = String.format(groupTempMessageTemplate,
                     ((GroupTempMessageEvent) event).getGroup().getName(),
                     event.getSenderName());
         }else if(event instanceof StrangerMessageEvent){
-            return String.format(strangerMessageTemplate,
+            result = String.format(strangerMessageTemplate,
                     event.getSenderName());
         }else if(event instanceof GroupMessageSyncEvent){
-            return String.format(messageSyncTemplate,
+            result = String.format(messageSyncTemplate,
                     ((GroupMessageSyncEvent) event).getGroup().getName());
         }else if(event instanceof FriendMessageSyncEvent){
-            return String.format(messageSyncTemplate,
+            result = String.format(messageSyncTemplate,
                     getUserName(event.getSender()));
         }else if(event instanceof GroupTempMessageSyncEvent){
-            return String.format(messageSyncTemplate,
+            result = String.format(messageSyncTemplate,
                     event.getSenderName());
         }else if(event instanceof StrangerMessageSyncEvent){
-            return String.format(messageSyncTemplate,
+            result = String.format(messageSyncTemplate,
                     event.getSenderName());
         }else{
-            return (String.format(unknownTemplate,
+            result = (String.format(unknownTemplate,
                     event.getSenderName()));
         }
+        return Utils.removeControlCharacters(result);
     }
 }
