@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="15" templateID="1" action="web" actionData="group:690811289" a_actionData="group:690811289" i_actionData="group:690811289" brief="推荐群聊：2021年软挑武长赛区" sourceMsgId="0" url="https://jq.qq.com/?_wv=1027&amp;k=KVzrLDD1" flag="0" adverSign="0" multiMsgFlag="0">
+    <item layout="0" mode="1" advertiser_id="0" aid="0">
+        <summary>推荐群聊</summary>
+        <hr hidden="false" style="0" />
+    </item>
+    <item layout="2" mode="1" advertiser_id="0" aid="0">
+        <picture cover="https://p.qlogo.cn/gh/690811289/690811289/100" w="0" h="0" needRoundView="0" />
+        <title>2021年软挑武长赛区</title>
+        <summary>本群为华为软件精英挑战赛武长（湖北和湖南）赛区交流群，请入群的同学修改自己的群昵</summary>
+    </item>
+    <source name="" icon="" action="" appid="-1" />
+</msg>

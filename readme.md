@@ -10,7 +10,6 @@ This project is based on project [mamoe/mirai](https://github.com/mamoe/mirai)
   
     - [Normal Message](#normal-message)
     - [Rich Message](#rich-message)
-    - [Sound Message](#sound-message)
 - [Supporting New Rich Message Types](#supporting-new-rich-message-types)
 - [Logging](#logging)
 - [Not Using Mirai Platform](#not-using-mirai-platform)
@@ -37,14 +36,16 @@ By parsing a normal message, you'll get an instance of [ParsedMessage](https://g
 
 - Source Prompt (A short text describing the source of this message)
 - Images
-- Links (If the message contains a valid link)
+- Links (If the message contains a valid link). A link may point to :
+  - A website
+  - Music (from music share)
+  - Voice (from voice messages)
+  - Group File (from file messages)
+  - Other (from text messages that matches a certain regex pattern)
 - Text
 
 #### Rich Message
 By parsing a rich message, you'll get an instance of [ParsedRichMessage](https://github.com/Under-estimate/MiraiRichMessageParser/tree/main/src/main/java/org/zrnq/ParsedRichMessage.java), which is a subtype of [ParsedMessage](https://github.com/Under-estimate/MiraiRichMessageParser/tree/main/src/main/java/org/zrnq/ParsedMessage.java). The description text, link and images included in the rich message will be extracted. Besides, [ParsedRichMessage](https://github.com/Under-estimate/MiraiRichMessageParser/tree/main/src/main/java/org/zrnq/ParsedRichMessage.java) also contains the type of this rich message.
-
-#### Sound Message
-Since voice messages and music share messages contain a new media type, parsing them will give you an instance of [ParsedSoundMessage](https://github.com/Under-estimate/MiraiRichMessageParser/tree/main/src/main/java/org/zrnq/ParsedSoundMessage.java), which contains a sound link.
 
 ### Supporting New Rich Message Types
 Since there exists numerous rich message types, it's hard to cover every type. New types will be supported gradually.  

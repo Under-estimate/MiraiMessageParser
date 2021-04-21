@@ -37,6 +37,8 @@ public class ParsedMessage {
 
 
     public void addImage(String url){
+        if(!url.startsWith("http"))
+            url = "http://" + url;
         try{
             images.add(new URL(url));
         }catch (Exception e){
@@ -66,6 +68,8 @@ public class ParsedMessage {
         return data;
     }
     public void addLink(String url,String desc){
+        if(!url.startsWith("http"))
+            url = "http://" + url;
         try{
             links.add(new Link(new URL(url),desc));
         }catch (Exception e){

@@ -13,8 +13,11 @@ public final class WebMessage extends StructMessage{
     @Override
     public ParsedRichMessage parseMessage(String message) {
         JSONObject json= JSON.parseObject(message);
+        String prompt = json.getString("prompt");
         json=json.getJSONObject("meta").getJSONObject("news");
-        ParsedRichMessage parsed=new ParsedRichMessage(json.getString("desc"),this.getClass());
+        ParsedRichMessage parsed=new ParsedRichMessage(
+                prompt + "\r\n" + json.getString("desc"),
+                this.getClass());
         parsed.addLink(json.getString("jumpUrl"),json.getString("title"));
         return parsed;
     }

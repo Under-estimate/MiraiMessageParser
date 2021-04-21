@@ -1,8 +1,10 @@
 package org.zrnq;
 
+import net.mamoe.mirai.contact.Group;
 import net.mamoe.mirai.contact.User;
 import net.mamoe.mirai.event.events.*;
 import net.mamoe.mirai.message.data.*;
+import net.mamoe.mirai.utils.RemoteFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +36,7 @@ public class MiraiMessageParser {
         pm.sourcePrompt = getSourcePrompt(event);
         for(SingleMessage single : event.getMessage()){
             if(single instanceof Image){
-                sb.append("[图片]");
+                sb.append("[Image]");
                 pm.addImage(Image.queryUrl((Image)single));
             }else if(single instanceof At){
                 if(event instanceof GroupMessageEvent){
@@ -46,27 +48,40 @@ public class MiraiMessageParser {
                     sb.append(single.contentToString());
                 }
             }else if(single instanceof FlashImage){
-                sb.append("[闪照]");
+                sb.append("[Flash Image]");
                 pm.addImage(Image.queryUrl(((FlashImage) single).getImage()));
+            }else if(single instanceof FileMessage){
+                FileMessage message = (FileMessage) single;
+                RemoteFile file = message.toRemoteFile((Group)event.getSubject());
+                if(file == null) {
+                    sb.append("[File]Fetch failed.");
+                    continue;
+                }
+                RemoteFile.DownloadInfo info = file.getDownloadInfo();
+                if(info == null) {
+                    sb.append("[File]Fetch failed.");
+                    continue;
+                }
+                pm.addLink(file.getDownloadInfo().getUrl(), "[File]" + info.getFilename());
             }else if(single instanceof Voice){
-                ParsedSoundMessage psm = new ParsedSoundMessage("[Voice]",((Voice) single).getUrl());
-                psm.sourcePrompt = pm.sourcePrompt;
-                psm.text = sb.toString()+"[Voice]";
-                return psm;
+                String url = ((Voice)single).getUrl();
+                if(url == null){
+                    sb.append("[Voice]Fetch failed.");
+                    continue;
+                }
+                pm.addLink(url, "[Voice]");
             }else if(single instanceof RichMessage){
                 ParsedRichMessage prm = richMessageParser.parseRichMessage(((RichMessage)single).getContent());
                 prm.sourcePrompt = pm.sourcePrompt;
-                prm.text = Utils.removeControlCharacters(sb.toString() + prm.text);
+                prm.text = Utils.removeControlCharacters(sb + prm.text);
                 return prm;
             }else if(single instanceof MusicShare) {
                 //Parsing music share message [RichMessage/JSON/Struct/Music] is supported by mirai officially.
                 MusicShare ms = (MusicShare) single;
-                ParsedSoundMessage psm = new ParsedSoundMessage("[MusicShare]",ms.getMusicUrl());
-                psm.sourcePrompt = pm.sourcePrompt;
-                psm.text = sb.toString()+"[MusicShare]"+ms.getTitle();
-                psm.addImage(ms.getPictureUrl());
-                psm.addLink("Website", ms.getJumpUrl());
-                return psm;
+                sb.append("[Music Share]");
+                pm.addImage(ms.getPictureUrl());
+                pm.addLink("[Music]" + ms.getTitle(), ms.getMusicUrl());
+                pm.addLink("Website", ms.getJumpUrl());
             }else if(single instanceof ForwardMessage){
                 //Parsing forward message [RichMessage/XML/Multiply] is supported by mirai officially.
                 ForwardMessage fm = (ForwardMessage) single;
@@ -76,6 +91,7 @@ public class MiraiMessageParser {
             }else{
                 sb.append(single.contentToString());
             }
+
         }
         pm.text = Utils.removeControlCharacters(sb.toString());
         Pattern pattern = Pattern.compile("([hH][tT]{2}[pP]://|[hH][tT]{2}[pP][sS]://|[wW]{3}.|[wW][aA][pP].|[fF][tT][pP].|[fF][iI][lL][eE].)[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]");

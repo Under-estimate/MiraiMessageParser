@@ -20,7 +20,7 @@ public final class MiniAppMessage extends JsonMessage{
         ParsedRichMessage prm=new ParsedRichMessage("[MiniApp]",this.getClass());
         if(json.containsKey("qqdocurl"))
             prm.addLink(json.getString("qqdocurl"),"["+json.getString("title")+"]"+json.getString("desc"));
-        prm.addImage("http://"+json.getString("preview"));
+        prm.addImage(json.getString("preview"));
         return prm;
     }
 }

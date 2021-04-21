@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="14" templateID="1" action="plugin" actionData="AppCmd://OpenContactInfo/?uin=1043665920" a_actionData="mqqapi://card/show_pslcard?src_type=internal&amp;source=sharecard&amp;version=1&amp;uin=1043665920" i_actionData="mqqapi://card/show_pslcard?src_type=internal&amp;source=sharecard&amp;version=1&amp;uin=1043665920" brief="推荐了邓娟 导师" sourceMsgId="0" url="" flag="1" adverSign="0" multiMsgFlag="0">
+    <item layout="0" mode="1" advertiser_id="0" aid="0">
+        <summary>推荐联系人</summary>
+        <hr hidden="false" style="0" />
+    </item>
+    <item layout="2" mode="1" advertiser_id="0" aid="0">
+        <picture cover="mqqapi://card/show_pslcard?src_type=internal&amp;source=sharecard&amp;version=1&amp;uin=1043665920" w="0" h="0" />
+        <title>邓娟 导师</title>
+        <summary>帐号:1043665920</summary>
+    </item>
+    <source name="" icon="" action="" appid="-1" />
+</msg>
