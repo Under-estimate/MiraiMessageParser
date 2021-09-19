@@ -45,4 +45,14 @@ public class Utils {
         }
         return sb.toString();
     }
+    private static final String[] fileSizeUnit = {"B", "KB", "MB", "GB", "TB"};
+    public static String getFileSizeRepresentation(long sizeInByte){
+        int level = 0;
+        double precise = sizeInByte;
+        while(precise >= 1024){
+            precise /= 1024;
+            level ++;
+        }
+        return String.format("%.02f%s", precise, fileSizeUnit[level]);
+    }
 }

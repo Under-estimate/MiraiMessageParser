@@ -9,7 +9,6 @@ import org.zrnq.annotation.RichMessageType;
 /**
  * Group announce message. The text may not be complete if the announce is too long.
  * */
-@CollectData
 @RichMessageType(typeName = "GroupAnnounce", fullName = "RichMessage/JSON/GroupAnnounce", acceptedFeatureValues = "com.tencent.mannounce")
 public final class GroupAnnounce extends JsonMessage{
     @Override

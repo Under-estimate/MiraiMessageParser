@@ -10,7 +10,6 @@ import org.zrnq.annotation.RichMessageType;
  * Multiple messages that are forwarded together.
  * The text will only display the first few messages.
  * */
-@CollectData
 @RichMessageType(typeName = "Multiply", fullName = "RichMessage/XML/Multiply", acceptedFeatureValues = "35")
 public final class MultiplyMessage extends XmlMessage{
     @Override

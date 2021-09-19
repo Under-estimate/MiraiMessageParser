@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<msg templateID="123"
+     url="https://b23.tv/M2pnRB?share_medium=android&amp;share_source=qq&amp;bbid=XY628A767B687795624CB27060589ADDB8117&amp;ts=1619696375461"
+     serviceID="1" action="web" actionData="" a_actionData="" i_actionData="" brief="[QQ小程序]哔哩哔哩" flag="0">
+    <item layout="2">
+        <picture cover="http://pubminishare-30161.picsz.qpic.cn/479e7379-be88-4103-a3d7-9e96bc43030a"/>
+        <title>哔哩哔哩</title>
+        <summary>语雀大会2021-绘境·文化众创-虚拟与现实的桥梁</summary>
+    </item>
+    <source url="https://b23.tv/M2pnRB?share_medium=android&amp;share_source=qq&amp;bbid=XY628A767B687795624CB27060589ADDB8117&amp;ts=1619696375461"
+            icon="http://i.gtimg.cn/open/app_icon/00/95/17/76//100951776_100_m.png?t=1619690412" name="哔哩哔哩" appid="0"
+            action="web" actionData="" a_actionData="tencent0://" i_actionData=""/>
+</msg>

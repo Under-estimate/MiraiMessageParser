@@ -8,7 +8,6 @@ import org.zrnq.annotation.RichMessageType;
 /**
  * Rich message that contains a picture and description.
  * */
-@CollectData
 @RichMessageType(typeName = "PictureText", fullName = "RichMessage/XML/PictureText", acceptedFeatureValues = {"1","33"})
 public final class PictureTextMessage extends XmlMessage{
     @Override

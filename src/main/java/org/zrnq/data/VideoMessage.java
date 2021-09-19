@@ -12,8 +12,9 @@ public final class VideoMessage extends XmlMessage{
     @Override
     public ParsedRichMessage parseMessage(String message) {
         Element root=parseDocument(message);
-        ParsedRichMessage prm=new ParsedRichMessage("[Video]",this.getClass());
-        prm.addLink(root.getAttribute("url"),root.getElementsByTagName("title").item(0).getTextContent());
+        String desc = root.getElementsByTagName("title").item(0).getTextContent();
+        ParsedRichMessage prm=new ParsedRichMessage(desc,this.getClass());
+        prm.addLink(root.getAttribute("url"),desc);
         prm.addImage(((Element)root.getElementsByTagName("video").item(0)).getAttribute("cover"));
         return prm;
     }

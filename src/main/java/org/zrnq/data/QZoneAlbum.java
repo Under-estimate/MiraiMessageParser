@@ -11,7 +11,6 @@ import org.zrnq.annotation.RichMessageType;
  * A share message of QZone album.
  * May contain multiple images.
  * */
-@CollectData
 @RichMessageType(typeName = "QZoneAlbum", fullName = "RichMessage/JSON/QZoneAlbum", acceptedFeatureValues = "com.tencent.qzone.albumInvite")
 public final class QZoneAlbum extends JsonMessage{
     @Override

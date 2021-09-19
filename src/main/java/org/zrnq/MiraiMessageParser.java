@@ -1,7 +1,10 @@
 package org.zrnq;
 
+import net.mamoe.mirai.Bot;
 import net.mamoe.mirai.contact.Group;
 import net.mamoe.mirai.contact.User;
+import net.mamoe.mirai.contact.announcement.Announcement;
+import net.mamoe.mirai.contact.announcement.OnlineAnnouncement;
 import net.mamoe.mirai.event.events.*;
 import net.mamoe.mirai.message.data.*;
 import net.mamoe.mirai.utils.RemoteFile;
@@ -9,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,33 +59,38 @@ public class MiraiMessageParser {
                 RemoteFile file = message.toRemoteFile((Group)event.getSubject());
                 if(file == null) {
                     sb.append("[File]Fetch failed.");
-                    continue;
+                    break; // Since file message cannot combine with other messages.
                 }
                 RemoteFile.DownloadInfo info = file.getDownloadInfo();
-                if(info == null) {
+                RemoteFile.FileInfo finfo = file.getInfo();
+                if(info == null || finfo == null) {
                     sb.append("[File]Fetch failed.");
-                    continue;
+                    break;
                 }
-                pm.addLink(file.getDownloadInfo().getUrl(), "[File]" + info.getFilename());
-            }else if(single instanceof Voice){
-                String url = ((Voice)single).getUrl();
-                if(url == null){
-                    sb.append("[Voice]Fetch failed.");
-                    continue;
-                }
-                pm.addLink(url, "[Voice]");
-            }else if(single instanceof RichMessage){
-                ParsedRichMessage prm = richMessageParser.parseRichMessage(((RichMessage)single).getContent());
+                sb.append("[File]").append(info.getFilename());
+                pm.addLink(info.getUrl(), "[File]" + info.getFilename()
+                        + "(" + Utils.getFileSizeRepresentation(finfo.getLength()) + ")",
+                        ParsedMessage.LinkMediaType.File, info.getFilename());
+                break;
+            }else if(single instanceof OnlineAudio){
+                String url = ((OnlineAudio)single).getUrlForDownload();
+                pm.addLink(url, "[Voice]", ParsedMessage.LinkMediaType.Audio);
+            }else if(single instanceof RichMessage) {
+                ParsedRichMessage prm = richMessageParser.parseRichMessage(((RichMessage) single).getContent());
                 prm.sourcePrompt = pm.sourcePrompt;
                 prm.text = Utils.removeControlCharacters(sb + prm.text);
                 return prm;
+            }else if(single instanceof OnlineAnnouncement) {
+                //Parsing group announcement message [RichMessage/JSON/GroupAnnounce] is supported by mirai officially.
+                OnlineAnnouncement announcement = (OnlineAnnouncement) single;
+                sb.append("[Announcement]").append(announcement.getContent());
             }else if(single instanceof MusicShare) {
                 //Parsing music share message [RichMessage/JSON/Struct/Music] is supported by mirai officially.
                 MusicShare ms = (MusicShare) single;
                 sb.append("[Music Share]");
                 pm.addImage(ms.getPictureUrl());
-                pm.addLink("[Music]" + ms.getTitle(), ms.getMusicUrl());
-                pm.addLink("Website", ms.getJumpUrl());
+                pm.addLink(ms.getMusicUrl(),"[Music]" + ms.getTitle() , ParsedMessage.LinkMediaType.Audio);
+                pm.addLink(ms.getJumpUrl(),"Website");
             }else if(single instanceof ForwardMessage){
                 //Parsing forward message [RichMessage/XML/Multiply] is supported by mirai officially.
                 ForwardMessage fm = (ForwardMessage) single;
@@ -91,10 +100,11 @@ public class MiraiMessageParser {
             }else{
                 sb.append(single.contentToString());
             }
-
+            if(single instanceof ConstrainSingle)
+                break;
         }
         pm.text = Utils.removeControlCharacters(sb.toString());
-        Pattern pattern = Pattern.compile("([hH][tT]{2}[pP]://|[hH][tT]{2}[pP][sS]://|[wW]{3}.|[wW][aA][pP].|[fF][tT][pP].|[fF][iI][lL][eE].)[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]");
+        Pattern pattern = Pattern.compile("(http(s)?://.)?(www\\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&/=]*)");
         Matcher matcher = pattern.matcher(pm.text);
         while(matcher.find())
             pm.addLink(matcher.group(),matcher.group());

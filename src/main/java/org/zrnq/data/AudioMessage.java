@@ -1,6 +1,7 @@
 package org.zrnq.data;
 
 import org.w3c.dom.Element;
+import org.zrnq.ParsedMessage;
 import org.zrnq.ParsedRichMessage;
 import org.zrnq.annotation.CollectData;
 import org.zrnq.annotation.RichMessageType;
@@ -15,7 +16,9 @@ public final class AudioMessage extends XmlMessage{
     public ParsedRichMessage parseMessage(String message) {
         Element root=parseDocument(message);
         ParsedRichMessage prm=new ParsedRichMessage(root.getElementsByTagName("summary").item(0).getTextContent(),this.getClass());
-        prm.addLink(root.getAttribute("url"),root.getElementsByTagName("title").item(0).getTextContent());
+        prm.addLink(root.getAttribute("url"),
+                root.getElementsByTagName("title").item(0).getTextContent(),
+                ParsedMessage.LinkMediaType.Audio);
         return prm;
     }
 }

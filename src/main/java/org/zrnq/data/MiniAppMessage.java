@@ -17,9 +17,10 @@ public final class MiniAppMessage extends JsonMessage{
         if(!viewId.equals(json.getString("view")))
             return new ParsedRichMessage(this.getClass());
         json=json.getJSONObject("meta").getJSONObject("detail_1");
-        ParsedRichMessage prm=new ParsedRichMessage("[MiniApp]",this.getClass());
+        String desc = "["+json.getString("title")+"]"+json.getString("desc");
+        ParsedRichMessage prm=new ParsedRichMessage(desc,this.getClass());
         if(json.containsKey("qqdocurl"))
-            prm.addLink(json.getString("qqdocurl"),"["+json.getString("title")+"]"+json.getString("desc"));
+            prm.addLink(json.getString("qqdocurl"),desc);
         prm.addImage(json.getString("preview"));
         return prm;
     }

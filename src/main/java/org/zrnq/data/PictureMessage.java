@@ -13,6 +13,9 @@ public final class PictureMessage extends XmlMessage{
     @Override
     public ParsedRichMessage parseMessage(String message) {
         Element root=parseDocument(message);
-        return new ParsedRichMessage(root.getAttribute("brief"),this.getClass());
+        Element image = (Element) root.getElementsByTagName("image").item(0);
+        ParsedRichMessage prm = new ParsedRichMessage(root.getAttribute("brief"),this.getClass());
+        prm.addImage(String.format("https://gchat.qpic.cn/gchatpic_new/0/0-0-%s/0", image.getAttribute("md5")));
+        return prm;
     }
 }

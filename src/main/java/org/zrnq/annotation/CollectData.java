@@ -14,5 +14,5 @@ public @interface CollectData {
     /**
      * Disabled when publishing.
      * */
-    boolean enabled() default false;
+    boolean enabled() default true;
 }

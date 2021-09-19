@@ -1,0 +1,30 @@
+{
+  "app": "com.tencent.mannounce",
+  "config": {
+    "ctime": 1620126527,
+    "forward": 0,
+    "token": "73a426d9ad44eb6ce668f26b631e053d"
+  },
+  "desc": "群公告",
+  "extra": {
+    "app_type": 1,
+    "appid": 1101236949,
+    "uin": 691974642
+  },
+  "meta": {
+    "mannounce": {
+      "cr": 1,
+      "encode": 1,
+      "fid": "0ce72c39000000003f2b91605dac0500",
+      "gc": "959244044",
+      "sign": "0c8801d623f97c675c9fdb29360e3a6e",
+      "text": "5LqU5pyI5Zui5pel5bCG5Zyo5pys5ZGo5LiJ77yI5piO5aSp77yJ5pma5LiKMjHvvJozMOe6v+S4iuWPrOW8gO+8jOivt+Wkp+Wutu+8iOWumuWlvemXuemSn++8ieWHhuaXtui/m+WFpeS8muiuruWTpu+9ng==",
+      "title": "576k5YWs5ZGK",
+      "tw": 0,
+      "uin": "691974642"
+    }
+  },
+  "prompt": "[群公告]五月团日将在本周三（明天）晚上21：30线上召开，请大家（定好闹钟）准时进入会议哦～",
+  "ver": "1.0.0.43",
+  "view": "main"
+}

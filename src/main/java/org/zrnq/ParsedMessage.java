@@ -67,11 +67,17 @@ public class ParsedMessage {
             cachedImages = data;
         return data;
     }
-    public void addLink(String url,String desc){
+    public void addLink(String url, String desc){
+        addLink(url, desc, LinkMediaType.Website);
+    }
+    public void addLink(String url, String desc, LinkMediaType type){
+        addLink(url, desc, type, null);
+    }
+    public void addLink(String url, String desc, LinkMediaType type, String extra){
         if(!url.startsWith("http"))
             url = "http://" + url;
         try{
-            links.add(new Link(new URL(url),desc));
+            links.add(new Link(new URL(url),desc,type,extra));
         }catch (Exception e){
             throw new IllegalArgumentException("Invalid link url: "+url,e);
         }
@@ -95,9 +101,24 @@ public class ParsedMessage {
          * The description of this link.
          * */
         public final String desc;
-        public Link(URL url,String desc){
-            this.link=url;
-            this.desc=desc;
+        /**
+         * The type of this link.
+         * @see LinkMediaType
+         * */
+        public final LinkMediaType type;
+        /**
+         * Extra info for this link.
+         * For file type links, the value is filename.
+         * */
+        public final String extra;
+        public Link(URL url, String desc, LinkMediaType type, String extra){
+            this.link = url;
+            this.desc = desc;
+            this.type = type;
+            this.extra = extra;
         }
+    }
+    public enum LinkMediaType{
+        Website, Audio, File
     }
 }
