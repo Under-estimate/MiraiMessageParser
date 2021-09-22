@@ -4,6 +4,8 @@ import org.reflections.Reflections;
 import org.zrnq.ParsedRichMessage;
 import org.zrnq.RichMessageTypes;
 import org.zrnq.annotation.RichMessageType;
+
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -32,7 +34,7 @@ public class RichMessageTemplate {
             throw new IllegalStateException("Child classes of RichMessageTemplate should be annotated with RichMessageType.");
         }
         Reflections reflections=new Reflections("org.zrnq.data");
-        Set<?> childTypes=reflections.getSubTypesOf(this.getClass());
+        Collection<?> childTypes=reflections.getSubTypesOf(this.getClass());
         if(childTypes.size()<=0)
             throw new UnsupportedOperationException("Rich message type endpoint \""+this.getClass()+"\" not implemented.");
         String featureValue=getClassifyingFeatureValue(message);

@@ -75,6 +75,7 @@ public class MiraiMessageParser {
             }else if(single instanceof OnlineAudio){
                 String url = ((OnlineAudio)single).getUrlForDownload();
                 pm.addLink(url, "[Voice]", ParsedMessage.LinkMediaType.Audio);
+                break;
             }else if(single instanceof RichMessage) {
                 ParsedRichMessage prm = richMessageParser.parseRichMessage(((RichMessage) single).getContent());
                 prm.sourcePrompt = pm.sourcePrompt;
@@ -84,6 +85,7 @@ public class MiraiMessageParser {
                 //Parsing group announcement message [RichMessage/JSON/GroupAnnounce] is supported by mirai officially.
                 OnlineAnnouncement announcement = (OnlineAnnouncement) single;
                 sb.append("[Announcement]").append(announcement.getContent());
+                break;
             }else if(single instanceof MusicShare) {
                 //Parsing music share message [RichMessage/JSON/Struct/Music] is supported by mirai officially.
                 MusicShare ms = (MusicShare) single;
@@ -91,17 +93,17 @@ public class MiraiMessageParser {
                 pm.addImage(ms.getPictureUrl());
                 pm.addLink(ms.getMusicUrl(),"[Music]" + ms.getTitle() , ParsedMessage.LinkMediaType.Audio);
                 pm.addLink(ms.getJumpUrl(),"Website");
+                break;
             }else if(single instanceof ForwardMessage){
                 //Parsing forward message [RichMessage/XML/Multiply] is supported by mirai officially.
                 ForwardMessage fm = (ForwardMessage) single;
                 sb.append(fm.getTitle()).append("\r\n")
                     .append(fm.getPreview()).append("\r\n")
                     .append(fm.getSummary());
+                break;
             }else{
                 sb.append(single.contentToString());
             }
-            if(single instanceof ConstrainSingle)
-                break;
         }
         pm.text = Utils.removeControlCharacters(sb.toString());
         Pattern pattern = Pattern.compile("(http(s)?://.)?(www\\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_+.~#?&/=]*)");

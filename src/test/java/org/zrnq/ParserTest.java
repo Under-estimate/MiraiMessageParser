@@ -10,6 +10,7 @@ import org.zrnq.data.RichMessageTemplate;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 public class ParserTest {
@@ -28,7 +29,7 @@ public class ParserTest {
         logDestination.delete();
         parser=new RichMessageParser(logDestination);
         Reflections reflect=new Reflections("org.zrnq.data");
-        Set<?> list = reflect.getTypesAnnotatedWith(RichMessageType.class);
+        Collection<?> list = reflect.getTypesAnnotatedWith(RichMessageType.class);
         ArrayList<DynamicTest> tests=new ArrayList<>();
         for(Object obj:list){
             Class<? extends RichMessageTemplate> clazz=(Class<? extends RichMessageTemplate>) obj;
